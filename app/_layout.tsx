@@ -1,9 +1,8 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { GluestackUIProvider, config } from '@gluestack-ui/react';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
-import { useColorScheme } from 'react-native';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -12,7 +11,7 @@ export {
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
+  initialRouteName: 'index',
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -43,14 +42,15 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <GluestackUIProvider config={config.theme}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name='login' options={{ headerShown: false }} />
+        <Stack.Screen name='blog' options={{ headerShown: false }} />
+        <Stack.Screen name='pricing' options={{ headerShown: false }} />
+        <Stack.Screen name='team' options={{ headerShown: false }} />
+        <Stack.Screen name='index' options={{ headerShown: false }} />
       </Stack>
-    </ThemeProvider>
+    </GluestackUIProvider>
   );
 }
