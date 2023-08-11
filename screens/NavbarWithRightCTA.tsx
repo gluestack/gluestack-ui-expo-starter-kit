@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, Button, HStack, Menu, Image } from '@gluestack-ui/react';
-
+import { Box, Button, HStack, Menu } from '@gluestack-ui/react';
 import { MenuIcon } from 'lucide-react-native';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
+import GluestackLogo from '../assets/svgs/GluestackLogo';
 
 type NavbarButtonProps = {
   item: string;
@@ -43,6 +43,7 @@ const NavbarButton: React.FC<NavbarButtonProps> = ({ item, index }) => {
 
 const NavbarWithRightCta: React.FC = () => {
   const topMenuButtons = ['Pricing', 'Team', 'Blog'];
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <Box
@@ -62,17 +63,13 @@ const NavbarWithRightCta: React.FC = () => {
         maxWidth={1280}
         alignItems='center'
         justifyContent='space-between'
-        px='$8'
+        px='$4'
+        sx={{ '@lg': { px: '$8' } }}
         py='$4'
       >
         <HStack space='md' alignItems='center'>
-          <Box w={220} px='$4' py='$3' rounded='$sm'>
-            <Image
-              aspectRatio={'8/1'}
-              source={{
-                uri: 'https://ui.gluestack.io/_next/image?url=%2Ficon%2Flogo%2Fdark-mode.svg&w=384&q=75',
-              }}
-            />
+          <Box w={220} py='$3' rounded='$sm'>
+            <GluestackLogo />
           </Box>
 
           <HStack display='none' sx={{ '@lg': { display: 'flex' } }}>
@@ -108,6 +105,9 @@ const NavbarWithRightCta: React.FC = () => {
             sx={{
               '@lg': { display: 'none' },
             }}
+            isOpen={isOpen}
+            onClose={() => setIsOpen(false)}
+            onOpen={() => setIsOpen(true)}
             // eslint-disable-next-line react/no-unstable-nested-components
             trigger={(triggerProps: any) => {
               return (
@@ -119,26 +119,40 @@ const NavbarWithRightCta: React.FC = () => {
                   borderColor='transparent'
                   {...triggerProps}
                 >
-                  <Button.Icon
-                    as={MenuIcon}
-                    sx={{
-                      _dark: {
-                        color: '$white',
-                      },
-                    }}
-                  />
+                  <Button.Icon as={MenuIcon} color='$white' />
                 </Button>
               );
             }}
           >
-            <Menu.Item key='Pricing' textValue='Pricing'>
+            <Menu.Item
+              key='Pricing'
+              textValue='Pricing'
+              onPress={() => {
+                router.push('/pricing');
+                setIsOpen(false);
+              }}
+            >
               <Menu.ItemLabel>Pricing</Menu.ItemLabel>
             </Menu.Item>
-            <Menu.Item key='Resources' textValue='Resources'>
-              <Menu.ItemLabel>Resources</Menu.ItemLabel>
+            <Menu.Item
+              key='Team'
+              textValue='Team'
+              onPress={() => {
+                router.push('/team');
+                setIsOpen(false);
+              }}
+            >
+              <Menu.ItemLabel>Team</Menu.ItemLabel>
             </Menu.Item>
-            <Menu.Item key='Support' textValue='Support'>
-              <Menu.ItemLabel>Support</Menu.ItemLabel>
+            <Menu.Item
+              key='Blog'
+              textValue='Blog'
+              onPress={() => {
+                router.push('/blog');
+                setIsOpen(false);
+              }}
+            >
+              <Menu.ItemLabel>Blog</Menu.ItemLabel>
             </Menu.Item>
           </Menu>
         </HStack>

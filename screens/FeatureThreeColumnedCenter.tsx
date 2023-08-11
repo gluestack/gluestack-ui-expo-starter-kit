@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import { Box, Heading, Icon, Text, VStack } from '@gluestack-ui/react';
-import { WifiIcon, TimerIcon, SpaceIcon } from 'lucide-react-native';
+import { AddIcon, Box, Heading, Icon, Text, VStack } from '@gluestack-ui/react';
 
 interface FeatureData {
   id: number;
@@ -16,7 +15,7 @@ interface FeatureData {
 const features: FeatureData[] = [
   {
     id: 1,
-    icon: SpaceIcon,
+    icon: AddIcon,
     title: 'Augmented Reality',
     description:
       'Immerse yourself in a world where virtual and real-life blend seamlessly, bringing new dimensions.',
@@ -27,7 +26,7 @@ const features: FeatureData[] = [
   },
   {
     id: 2,
-    icon: TimerIcon,
+    icon: AddIcon,
     title: 'Real-time Collaboration',
     description:
       'Collaborate with friends, colleagues, or fellow app users in real-time, fostering teamwork.',
@@ -38,7 +37,7 @@ const features: FeatureData[] = [
   },
   {
     id: 3,
-    icon: WifiIcon,
+    icon: AddIcon,
     title: 'Offline Mode',
     description:
       'Access key features and content even without an internet connection, ensuring uninterrupted app usage.',

@@ -3,6 +3,7 @@ import { GluestackUIProvider, config } from '@gluestack-ui/react';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
+import { KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -44,13 +45,29 @@ export default function RootLayout() {
 function RootLayoutNav() {
   return (
     <GluestackUIProvider config={config.theme}>
-      <Stack>
-        <Stack.Screen name='login' options={{ headerShown: false }} />
-        <Stack.Screen name='blog' options={{ headerShown: false }} />
-        <Stack.Screen name='pricing' options={{ headerShown: false }} />
-        <Stack.Screen name='team' options={{ headerShown: false }} />
-        <Stack.Screen name='index' options={{ headerShown: false }} />
-      </Stack>
+      <SafeAreaView style={{ flex: 1 }}>
+        <KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
+          <Stack>
+            <Stack.Screen
+              name='login'
+              options={{ headerShown: Platform.OS === 'web' ? false : true }}
+            />
+            <Stack.Screen
+              name='blog'
+              options={{ headerShown: Platform.OS === 'web' ? false : true }}
+            />
+            <Stack.Screen
+              name='pricing'
+              options={{ headerShown: Platform.OS === 'web' ? false : true }}
+            />
+            <Stack.Screen
+              name='team'
+              options={{ headerShown: Platform.OS === 'web' ? false : true }}
+            />
+            <Stack.Screen name='index' options={{ headerShown: false }} />
+          </Stack>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
     </GluestackUIProvider>
   );
 }

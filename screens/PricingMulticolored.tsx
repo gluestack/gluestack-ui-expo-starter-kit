@@ -273,7 +273,7 @@ const PricingHeaderContent = () => {
       }}
     >
       <Heading
-        size='4xl'
+        size='3xl'
         fontWeight='$extrabold'
         textAlign='center'
         color='$primary500'
@@ -311,7 +311,6 @@ const PricingMultiColored = () => {
   return (
     <ScrollView>
       <VStack
-        maxWidth='90%'
         w='$full'
         mx='auto'
         my='$16'

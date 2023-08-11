@@ -18,7 +18,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { AlertCircle, ArrowRight } from 'lucide-react-native';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { v4 as uuidv4 } from 'uuid';
+import { generateUUID } from '../utils';
 
 const blogSubscriptionSchema: any = z.object({
   email: z
@@ -408,7 +408,7 @@ const BlogWithCards: FC = () => {
             } = item;
             return (
               <BlogCard
-                key={uuidv4()}
+                key={generateUUID()}
                 category={category}
                 bannerUri={bannerUri}
                 userProfileUri={userProfileUri}

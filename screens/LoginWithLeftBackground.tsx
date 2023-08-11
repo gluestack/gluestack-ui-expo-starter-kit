@@ -8,7 +8,6 @@ import {
   FormControl,
   HStack,
   Heading,
-  Image,
   Input,
   Link,
   Text,
@@ -22,7 +21,8 @@ import { Keyboard } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { v4 as uuidv4 } from 'uuid';
+import { generateUUID } from '../utils';
+import GluestackLogo from '../assets/svgs/GluestackLogo';
 
 const USERS = [
   {
@@ -193,7 +193,7 @@ const LoginWithLeftBackground = () => {
                       sx={{
                         '@lg': { display: 'none' },
                       }}
-                      key={uuidv4()}
+                      key={generateUUID()}
                       size='md'
                     >
                       <Avatar.Image
@@ -211,7 +211,7 @@ const LoginWithLeftBackground = () => {
                       sx={{
                         '@lg': { display: 'flex' },
                       }}
-                      key={uuidv4()}
+                      key={generateUUID()}
                       size='md'
                     >
                       <Avatar.Image
@@ -267,12 +267,7 @@ const LoginWithLeftBackground = () => {
         space='lg'
       >
         <Box w={220} bg='$backgroundLight950' px='$4' py='$3' rounded='$sm'>
-          <Image
-            aspectRatio={'8/1'}
-            source={{
-              uri: 'https://ui.gluestack.io/_next/image?url=%2Ficon%2Flogo%2Fdark-mode.svg&w=384&q=75',
-            }}
-          />
+          <GluestackLogo />
         </Box>
         <Heading
           pt='$16'
